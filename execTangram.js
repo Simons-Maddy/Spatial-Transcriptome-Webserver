@@ -31,7 +31,7 @@ function execTangram(destination,filename) {
       --out ` + out_path + `1>log/tangram.a2p2_telen.clsCt.log 2>&1`;
 
     if (!fs.existsSync(`./scripts/run_tangram_mapping.py`)||
-        !fs.existsSync(`./datasets/adata_a2p2.telen.m500.log1p.leiden.deg.h5ad`)) {
+        !fs.existsSync(ad_sp)) {
         shell.echo('Sorry, this script not found !');
     } else {
         shell.mkdir('-p', destination + '/log');
