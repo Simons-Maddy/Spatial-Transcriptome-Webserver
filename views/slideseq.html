@@ -1,0 +1,80 @@
+{% extends "header&footer.html" %}
+{% block main %}
+
+<body style="margin: 0px; height: 100%">
+<div class="modal-body">
+    <div id="navbar"></div>
+    <div class="page-header" style="margin-top: 40px">
+        <h1> {{Data_Type}} <small> {{ST_ID}} </small></h1>
+    </div>
+    <div id="container" style="width: 600px;height:600px; margin: auto"></div>
+</div>
+
+<script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+<script src="https://cdn.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+<script src="https://cdn.highcharts.com.cn/highcharts/modules/boost.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/boost-canvas.js"></script>
+
+
+ <script>
+     let number = [[${number}]];
+     let locations = eval([[${locations}]]);
+     var data = [],
+         n = number,
+         i;
+     for (i = 0; i < n; i += 1) {
+         data.push([
+             locations[i]["xcoord"],
+             locations[i]["ycoord"]
+         ]);
+     }
+     if (!Highcharts.Series.prototype.renderCanvas) {
+         throw 'Module not loaded';
+     }
+     console.time('scatter');
+     Highcharts.chart('container', {
+         chart: {
+             zoomType: 'xy',
+             height: '100%'
+         },
+         boost: {
+             useGPUTranslations: true,
+             usePreAllocated: true
+         },
+         xAxis: {
+             min: 0,
+             max: 7000,
+             gridLineWidth: 1
+         },
+         yAxis: {
+             // Renders faster when we don't have to compute min and max
+             min: 0,
+             max: 7000,
+             minPadding: 0,
+             maxPadding: 0,
+             title: {
+                 text: null
+             }
+         },
+         title: {
+             text: 'Slideseq visualization for whole brain'
+         },
+         legend: {
+             enabled: false
+         },
+         series: [{
+             type: 'scatter',
+             color: 'rgba(65,105,225,0.1)',
+             data: data,
+             marker: {
+                 radius: 2
+             },
+             tooltip: {
+                 followPointer: false,
+                 pointFormat: '[{point.x:.1f}, {point.y:.1f}]'
+             }
+         }]
+     });
+     console.timeEnd('scatter');
+ </script>
+{% endblock %}

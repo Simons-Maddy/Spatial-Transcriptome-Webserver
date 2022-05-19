@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.25/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <style>
+        .nav .navbar-nav > li > a{
+            border-bottom-width: 5px;
+            border-bottom-color: #a6e1ec;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="topheader" class="navbar navbar-inverse navbar-fixed-top" style="text-align: center">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">SPATIAL TRANS WEB</a>
+            </div>
+            <ul class="nav navbar-nav" >
+                <li id="datasets" class="nav-item"><a href="/datasets" class="nav-link" >Datasets</a></li>
+                <li id="annotation" class="nav-item"><a href="/annotation" class="nav-link" >Annotation</a></li>
+                <li id="help" class="nav-item"><a href="/help" class="nav-link" >Help</a></li>
+                <li id="contact" class="nav-item"><a href="/contact" class="nav-link" >Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header style="margin-top: 70px;">
+    </header>
+
+        {% block main %} {% endblock %}
+
+    <div id="footer" class="modal-footer">
+        <footer class="h5 small" style="font-family: Arial;">
+            <p>Copyright &copy; 2021-<span id="date"></span> |
+                <a href="https://future.pku.edu.cn/" target="_blank">College of Future Technology (CFT), </a>
+                <a href="http://english.pku.edu.cn" target="_blank">Peking University</a>
+            </p>
+            <p>
+                All Rights Reserved | E-mail:
+                <a target="_blank"  href="mailto:xiaochunfu@126.com">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                </a>
+            </p>
+            <p><a href="https://beian.miit.gov.cn/integrated/recordquery#/Integrated/recordQuery" target="_blank" id="beian">
+                苏ICP备2021011214号-1</a></p></br>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript" src="/static/js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="/static/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+<script>
+    // nav bar active dynamically
+    $(function(){
+        $(document).ready(function(){
+            let url = document.location.href;
+            console.log(url);
+            let navUl = document.querySelector("nav ul");
+            let navUlChildren = navUl.children;
+            for (let i = 0; i < navUlChildren.length; i++)
+            {
+                if(String(url).match(navUlChildren[i].id)){
+                    navUlChildren[i].className = "active";
+                }else
+                    delete navUlChildren[i].className;
+            }
+            if(String(url).match("uploadFile") || String(url).match("result"))
+                navUlChildren[1].className = "active";
+            if(String(url).match("vitessce") || String(url).match("slideseq"))
+                navUlChildren[0].className = "active";
+            var new_date = new Date().getFullYear().toString();
+            document.getElementById('date').innerHTML = new_date;
+        });
+    })
+</script>
+</html>

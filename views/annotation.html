@@ -1,0 +1,17 @@
+{% extends "header&footer.html" %} {% block main %}
+  <div class="modal-body" style="height: 100%; margin-bottom: 0px;">
+    <div class="page-header" style="width: 50%; margin: 70px auto;">
+      <h1>Spatial Annotation</h1>
+    </div>
+    <div style="width: 50%; margin: auto;">
+      <form action="/annotation/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          Job title：<input type="text" id="title" name="title"/><br/>
+          matrix file：<input type="file" id="matrix" name="matrix"/><br/>
+          Email address: <input type="email" id="email" name="email"/><br/>
+          <button type="submit" class="btn btn-danger">Upload</button>
+        </div>
+      </form>
+    </div>
+  </div> <!-- modal-body-->
+{% endblock %}

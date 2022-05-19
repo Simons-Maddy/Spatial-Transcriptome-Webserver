@@ -1,0 +1,41 @@
+{% extends "header&footer.html" %} {% block main %}
+    <div class="modal-body" style="height: 100%; margin-bottom: 0px; margin-left:15%; width: 70%;">
+        <div class="page-header" style="width: 50%; margin: 70px auto;">
+            <h1>Spatial Annotation Request</h1>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Job Title: {{job_title}}</div>
+            <div class="panel-body">
+                <p>This page will be automatically updated in 1 second until search is done;</br>
+                    The time for annotation will be long, so we recommend you to keep the Request ID, by which
+                    you can search for he annotation result in your free time after the end of process.
+                </p>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th>Request ID</th>
+                    <th>{{queryID}}</th>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>annotating</td>
+                </tr>
+                <tr>
+                    <td>Submiited at</td>
+                    <td id="subtime"></td>
+                </tr>
+                <tr>
+                    <td>Time since submission</td>
+                    <td id="timer"></td>
+                </tr>
+                <tr>
+                    <td>The URL of result will be delivered to </td>
+                    <td>{{email}}</td>
+                </tr>
+            </table>
+        </div>
+    </div><!-- modal-body -->
+    <script src="/static/js/timer.js"></script>
+{% endblock %}

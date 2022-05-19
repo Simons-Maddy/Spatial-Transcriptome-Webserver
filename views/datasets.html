@@ -1,0 +1,39 @@
+{% extends "header&footer.html" %}
+{% block main %}
+<div class="modal-body" style="height: 100%; margin-bottom: 0px;">
+  <div class="page-header" style="width: 50%; margin: 70px auto;">
+    <h1>Spatial Transcritome Datasets </h1>
+  </div>
+  <div class="panel panel-default" style="width: 70%; margin: 70px auto;">
+    <!-- Default panel contents -->
+    <div class="panel-body">
+      <p>Display the Spatial Transcritome Datasets. Click the ST ID and view the details of the data.</p>
+    </div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ST ID</th>
+        <th>Data Types</th>
+        <th>Species</th>
+        <th>Organs</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><a href="/vitessce">WT A2-2 Mouse E14.5 Brain Coronal Section</a></td>
+        <td>Stereo-seq</td>
+        <td>Mouse</td>
+        <td>Brain</td>
+      </tr>
+      <tr>
+        <td><a href="/slideseq">SCP815-Puck_190921_19</a></td>
+        <td>Slide-seq</td>
+        <td>Mouse</td>
+        <td>Brain</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
